@@ -23,7 +23,7 @@ export const signin = async (req, res, next) => {
         if(!validUser) return next(errorHandler(401, 'User not found!'));
         
         const validPassword = bcryptjs.compareSync(password, validUser.password);
-        if(!validPassword) return next(errorHandler(401, 'Wrong credentilas'));
+        if(!validPassword) return next(errorHandler(401, 'Wrong credentilas!'));
 
         const token = jwt.sign({ id: validUser._id}, process.env.JWT_SECRET)
         const { password: hashPassword, ...rest } = validUser._doc;
@@ -78,6 +78,28 @@ export const google = async( req, res, next ) => {
                 .status(200)
                 .json(rest);
         }
+    }
+    catch(err){
+        next(err)
+    }
+}
+
+export const admin = async (req, res, next) => {
+    const { email, password } = req.body;
+    try{
+        const validUser = await User.findOne({ email , role:'admin' })
+        if(!validUser) return next(errorHandler(401, 'Access denied: You must be an admin to proceed.!'));
+        
+        const validPassword = bcryptjs.compareSync(password, validUser.password);
+        if(!validPassword) return next(errorHandler(401, 'Wrong Credentilas!'));
+
+        const token = jwt.sign({ id: validUser._id}, process.env.JWT_SECRET)
+        const { password: hashPassword, ...rest } = validUser._doc;
+        const expiryDate = new Date(Date.now() + 36000000) // 1hr
+        res
+        .cookie('access_token', token, { httpOnly: true , expires:expiryDate} )
+        .status(200)
+        .json(rest)
     }
     catch(err){
         next(err)

@@ -43,7 +43,7 @@ export const SignIn = () => {
 
   return (
     <>
-      <div className="p-3 max-w-lg mx-auto">
+      <div className="p-3 max-w-lg mx-auto mt-20">
         <h1 className="text-3xl text-center font-semibold my-7">Sign In</h1>
         <form 
           className="flex flex-col gap-4"
@@ -74,7 +74,7 @@ export const SignIn = () => {
           <div className="flex gap-2 mt-1 justify-center">
             <h6>Dont Have an account? </h6>
             <span className="text-blue-700 cursor-pointer">
-                <Link to="/user-sign-up">Sign Up</Link>
+                <Link to="/signup">Sign Up</Link>
             </span>           
           </div>
           <div class="flex items-center">

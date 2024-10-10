@@ -42,7 +42,7 @@ export const SignUp = () => {
 
   return (
     <>
-      <div className="p-3 max-w-lg mx-auto">
+      <div className="p-3 max-w-lg mx-auto mt-20">
         <h1 className="text-3xl text-center font-semibold my-7">Sign Up</h1>
         <form 
           className="flex flex-col gap-4"
@@ -80,7 +80,7 @@ export const SignUp = () => {
           <div className="flex gap-2 mt-1 justify-center">
             <h6>Already a member? </h6>
             <span className="text-blue-700 cursor-pointer">
-                <Link to="/user-sign-in">Sign In</Link>
+                <Link to="/signin">Sign In</Link>
             </span>           
           </div>
           <div class="flex items-center">

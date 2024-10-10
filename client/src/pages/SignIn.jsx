@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { signInStart, signInSuccess, signInFailure } from "../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { OAuth } from "../components/OAuth";
 
 export const SignIn = () => {
   const [ formData, setFormData ] = useState({});
@@ -65,9 +66,9 @@ export const SignIn = () => {
           />         
           <button
             disabled= {loading} 
-            className="bg-slate-700 text-white p-3 rounded-lg capitalize hover:opacity-95"
+            className="bg-slate-700 text-white p-3 rounded-lg capitalize hover:opacity-85"
           >
-            { loading ? 'Loading..' : 'SignIn'}
+            { loading ? 'Loading..' : 'Sign In'}
           </button>
 
           <div className="flex gap-2 mt-1 justify-center">
@@ -82,9 +83,7 @@ export const SignIn = () => {
             <div class="flex-grow border-t border-gray-300"></div>
           </div>
 
-          <button className="bg-red-800 mt-1 text-white p-3 rounded-lg capitalize hover:opacity-95">
-              Sign in with Google
-            </button>
+          <OAuth />
             <p className="text-red-700 mt-5">{error ? error.message || 'Something went wrong!' : ''}</p>
         </form>
       </div>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
 
-export const SignUp = () => {
+export const SignIn = () => {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -16,7 +16,7 @@ export const SignUp = () => {
     try{
       setLoading(true);
       setError(false);    
-      const res = await fetch('/api/auth/signup',{
+      const res = await fetch('/api/auth/signin',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -28,9 +28,8 @@ export const SignUp = () => {
       if(data.success === false){
         setError(true);
         return
-      }
-      navigate('/user-sign-in')      
-            
+      } 
+      navigate('/')      
     } 
     catch(err){
       setLoading(false);
@@ -42,19 +41,12 @@ export const SignUp = () => {
   return (
     <>
       <div className="p-3 max-w-lg mx-auto">
-        <h1 className="text-3xl text-center font-semibold my-7">Sign Up</h1>
+        <h1 className="text-3xl text-center font-semibold my-7">Sign In</h1>
         <form 
           className="flex flex-col gap-4"
           onSubmit={ handleSubmit }
         >
-          <input
-            type="text"
-            className="bg-slate-100 p-3 rounded-lg"
-            placeholder="Username"
-            id="username"
-            onChange={ handleChange}
-          />
-
+          
           <input
             type="email"
             className="bg-slate-100 p-3 rounded-lg"
@@ -73,13 +65,13 @@ export const SignUp = () => {
             disabled= {loading} 
             className="bg-slate-700 text-white p-3 rounded-lg capitalize hover:opacity-95"
           >
-            { loading ? 'Loading..' : 'SignUp'}
+            { loading ? 'Loading..' : 'SignIn'}
           </button>
 
           <div className="flex gap-2 mt-1 justify-center">
-            <h6>Already a member? </h6>
+            <h6>Dont Have an account? </h6>
             <span className="text-blue-700 cursor-pointer">
-                <Link to="/user-sign-in">Sign In</Link>
+                <Link to="/user-sign-up">Sign Up</Link>
             </span>           
           </div>
           <div class="flex items-center">

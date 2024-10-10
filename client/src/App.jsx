@@ -1,6 +1,6 @@
 import { BrowserRouter as Router,Route, Routes } from "react-router-dom"
 import { Home } from "./pages/Home"
-import { UserLogin } from "./pages/UserLogin"
+import { SignIn } from "./pages/SignIn"
 import { AdminLogin } from "./pages/AdminLogin"
 import Dashboard from "./pages/Dashboard"
 import { SignUp } from "./pages/SignUp"
@@ -12,7 +12,7 @@ const App = () => {
     <Router>
     <Routes>
       <Route path='/' element={<Home />}/>
-      <Route path='/user-sign-in' element={<UserLogin />}/>      
+      <Route path='/user-sign-in' element={<SignIn />}/>      
       <Route path='/user-sign-up' element={<SignUp />}/>      
       <Route path='/admin-sign-in' element={<AdminLogin />}/>
       <Route path='/dashboard' element={<Dashboard />}/>      

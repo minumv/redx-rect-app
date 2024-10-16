@@ -7,6 +7,8 @@ import { SignUp } from "./pages/SignUp"
 import { Profile } from "./pages/Profile"
 import { Navbar } from "./components/Navbar"
 import PrivateRoute from "./components/PrivateRoute"
+import AdminPrivateRoute from "./components/AdminPrivateRoute"
+import EditUser from "./pages/EditUser"
 
 const App = () => {
   return (
@@ -14,14 +16,21 @@ const App = () => {
     <Router>
       <Navbar />
       <Routes>
-        <Route path='/' element={<Home />}/>
-        <Route path='/signin' element={<SignIn />}/>      
-        <Route path='/signup' element={<SignUp />}/>      
-        <Route path='/admin' element={<AdminLogin />}/>              
-        <Route element={<PrivateRoute />}>
-          <Route path='/dashboard' element={<Dashboard />}/>
-          <Route path='/profile' element={<Profile />}/>
-        </Route>
+          {/* userside */}
+          <Route path='/' element={<Home />}/>
+          <Route path='/signin' element={<SignIn />}/>      
+          <Route path='/signup' element={<SignUp />}/>  
+          <Route element={<PrivateRoute />}>           
+            <Route path='/profile' element={<Profile />}/>
+          </Route>
+
+           {/* Admin side */}
+           <Route path='/admin' element={<AdminLogin />}/> 
+          <Route path="/admin/edit/:id" element={<EditUser />} />
+          <Route element={<AdminPrivateRoute/>}>
+            <Route path='/dashboard' element={<Dashboard />}/>          
+          </Route> 
+
       </Routes>
     </Router>
     </>

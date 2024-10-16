@@ -17,7 +17,7 @@ export const Navbar = () => {
           <Link to="/profile">
               {currentUser ? (
                 <img 
-                    src={ currentUser.profilePic} 
+                    src={ currentUser.profilepic} 
                     alt='profile'
                     className="h-7 w-7 rounded-full object-cover"
                 />

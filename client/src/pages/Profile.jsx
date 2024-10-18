@@ -40,7 +40,7 @@ export const Profile = () => {
         () => {
             getDownloadURL( uploadTask.snapshot.ref)
             .then((downloadURL) => {
-                setFormData({...formData, profilePicture: downloadURL});
+                setFormData({...formData, profilepic: downloadURL});
             })
         });
     }
@@ -58,11 +58,11 @@ export const Profile = () => {
                     onChange={(e)=> setImage(e.target.files[0])}
                 />
                 <img
-                    src={currentUser.profilepic}
+                    src={formData.profilepic || currentUser.profilepic}
                     className='rounded-full self-center w-24 h-24 object-cover mt-4'
                     onClick={()=> fileRef.current.click()}
                 />
-                <p className='text-sm self-center'>
+                <p className='text-sm self-center font-semibold'>
                     {imageError ? 
                     ( 
                         <span className='text-red-700'>Check your file type or file size! Size must be less than 2MB.</span>

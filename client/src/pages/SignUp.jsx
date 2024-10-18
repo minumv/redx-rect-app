@@ -8,6 +8,8 @@ export const SignUp = () => {
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
 
+  console.log(formData);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value })
   }
@@ -16,15 +18,33 @@ export const SignUp = () => {
     e.preventDefault();
     try{
       setLoading(true);
-      setError(false);    
-      const res = await fetch('/api/auth/signup',{
+      console.log('loading..');      
+      setError(false); 
+      console.log('no error..');   
+      const res = await fetch('http://localhost:3000/api/auth/signup',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         }, 
         body: JSON.stringify(formData)
-      })  
+      }) 
+
+      // const res = await fetch('https://jsonplaceholder.typicode.com/posts', {
+      //   method: 'GET',
+      // })
+      //   .then(response => response.json())
+      //   .then(data => console.log(data))
+      //   .catch(err => console.error('Fetch error:', err));
+      // if (!res.ok) {
+      //   throw new Error('Failed to sign up. Status: ' + res.status);
+      // }
+      console.log(formData);
+      
+      console.log('after fetch..');
+       
       const data = await res.json();
+      console.log("data",data);
+      
       setLoading(false);
       if(data.success === false){
         setError(true);
@@ -34,6 +54,7 @@ export const SignUp = () => {
             
     } 
     catch(err){
+      console.error('Fetch error:', err);
       setLoading(false);
       setError(true);
     }
@@ -83,10 +104,10 @@ export const SignUp = () => {
                 <Link to="/signin">Sign In</Link>
             </span>           
           </div>
-          <div class="flex items-center">
-            <div class="flex-grow border-t border-gray-300"></div>
-              <span class="px-3 text-gray-500">Or</span>
-            <div class="flex-grow border-t border-gray-300"></div>
+          <div className="flex items-center">
+            <div className="flex-grow border-t border-gray-300"></div>
+              <span className="px-3 text-gray-500">Or</span>
+            <div className="flex-grow border-t border-gray-300"></div>
           </div>
 
           <OAuth />

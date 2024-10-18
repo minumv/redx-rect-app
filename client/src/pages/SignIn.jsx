@@ -77,10 +77,10 @@ export const SignIn = () => {
                 <Link to="/signup">Sign Up</Link>
             </span>           
           </div>
-          <div class="flex items-center">
-            <div class="flex-grow border-t border-gray-300"></div>
-              <span class="px-3 text-gray-500">Or</span>
-            <div class="flex-grow border-t border-gray-300"></div>
+          <div className="flex items-center">
+            <div className="flex-grow border-t border-gray-300"></div>
+              <span className="px-3 text-gray-500">Or</span>
+            <div className="flex-grow border-t border-gray-300"></div>
           </div>
 
           <OAuth />
